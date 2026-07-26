@@ -240,8 +240,7 @@ load();
     setImportOpen(false);
 
   } catch (err) {
-  console.log("IMPORT ERROR:", err);
-  console.log("SERVER RESPONSE:", err.response?.data);
+  
 
   showError(
     err.response?.data?.message || "Import failed"

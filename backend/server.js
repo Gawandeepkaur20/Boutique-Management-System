@@ -22,10 +22,7 @@ import exportRoutes from './routes/exportRoutes.js';
 import searchRoutes from './routes/searchRoutes.js';
 
 dotenv.config();
-console.log(
-  "GROQ KEY:",
-  process.env.GROQ_API_KEY?.substring(0, 10)
-);
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

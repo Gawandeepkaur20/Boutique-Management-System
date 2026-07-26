@@ -40,11 +40,7 @@ const seed = async () => {
   });
   await Worker.create({ user: workerUser._id, specialization: 'Stitching', experience: 5 });
 
-  console.log('Seed data created:');
-  console.log('  Admin:    admin@boutique.com / admin123');
-  console.log('  Customer: customer@boutique.com / customer123');
-  console.log('  Worker:   worker@boutique.com / worker123');
-  console.log(`  Admin ID: ${admin._id}`);
+
 
   process.exit(0);
 };

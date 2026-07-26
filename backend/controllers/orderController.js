@@ -3,6 +3,7 @@ import Customer from '../models/Customer.js';
 import Measurement from '../models/Measurement.js';
 import Worker from '../models/Worker.js';
 import User from '../models/User.js';
+import transporter from "../config/mail.js";
 import asyncHandler from '../utils/asyncHandler.js';
 import { createNotification } from '../services/notificationService.js';
 import { generateInvoiceFromOrder } from '../services/invoiceService.js';
@@ -101,7 +102,7 @@ export const createOrder = asyncHandler(async (req, res) => {
   }
 
   const totalAmount = items.reduce((sum, i) => sum + i.quantity * i.price, 0);
-console.log(req.body);
+
 const order = await Order.create({
   customer: customer._id,
   items: cleanItems,
@@ -364,3 +365,4 @@ export const trackOrder = asyncHandler(async (req, res) => {
   }
   res.json(order);
 });
+

@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/slices/authSlice';
 import { toggleTheme } from '../../redux/slices/themeSlice';
+import logo from "../../assets/tb_logo.png";
 
 import {
   LayoutGrid,
@@ -76,29 +77,31 @@ flex-col
 sticky
 top-0
 ">
-    <div className="px-6 py-8 border-b border-[#EAE3D6] dark:border-[#2E2E2E] flex items-center gap-3">
-      
-      <Scissors
-    className="w-5 h-5 text-[#C9A227]"
-    strokeWidth={1.75}
-  />
+<div className="px-6 py-7 border-b border-[#EAE3D6] dark:border-[#2E2E2E]">
   <button
     type="button"
     onClick={() => {
       navigate(homePath);
       onNavigate?.();
     }}
-    className="w-full text-left"
+    className="flex items-center gap-4 w-full text-left group"
   >
-    <div>
-    <h1 className="text-lg font-bold tracking-[0.25em] text-[#4A3F35] ">
-      ATELIER
-    </h1>
+    <div className="flex items-center gap-3">
+  <img
+    src={logo}
+    alt="Trendora Boutique"
+    className="w-12 h-12 rounded-xl"
+  />
 
-    <p className="text-xs tracking-[0.15em] uppercase text-[#8B7D6B] dark:text-[#A0A0A0] mt-1">
-      Boutique Management
+  <div>
+    <h1 className="text-xl font-bold text-[#C9A227]">
+      Trendora Boutique
+    </h1>
+    <p className="text-xs text-gray-500">
+      Fashion • Elegance • Style
     </p>
-    </div>
+  </div>
+</div>
   </button>
 </div>
 

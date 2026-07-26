@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Scissors } from 'lucide-react';
+import logo from "../../assets/tb_logo.png";
 import { Alert, CircularProgress } from '@mui/material';
 import api from '../../services/api';
 import { showSuccess } from '../../utils/toast';
@@ -67,25 +67,31 @@ export default function ForgotPassword() {
         "
       >
         <div className="max-w-lg">
-          <div
-            className="
-            w-20
-            h-20
-            rounded-3xl
-            bg-[#F3EFD9]
-            dark:bg-[#2F2A1D]
-            flex
-            items-center
-            justify-center
-            mb-8
-            "
-          >
-            <Scissors className="w-10 h-10 text-[#C9A227]" />
-          </div>
+      <div className="px-6 py-7 border-b border-[#EAE3D6] dark:border-[#2E2E2E]">
+  <div className="flex items-center gap-4">
+    <img
+      src={logo}
+      alt="Trendora Boutique"
+      className="
+        w-16
+        h-16
+        rounded-2xl
+        object-cover
+        shadow-lg
+      "
+    />
 
-          <p className="text-sm text-[#8B7D6B] uppercase tracking-[0.25em]">
-            Boutique Management
-          </p>
+    <div>
+      <h1 className="text-2xl font-bold text-[#4A3F35] dark:text-white">
+        Trendora
+      </h1>
+
+      <p className="text-sm text-[#8B7D6B] dark:text-gray-400">
+        Boutique
+      </p>
+    </div>
+  </div>
+</div>
 
           <h1
             className="
@@ -141,28 +147,19 @@ export default function ForgotPassword() {
           "
         >
           <div className="text-center mb-8">
-            <div
-              className="
-              w-16
-              h-16
-              mx-auto
-              rounded-2xl
-              bg-[#F3EFD9]
-              dark:bg-[#2F2A1D]
-              flex
-              items-center
-              justify-center
-              mb-4
-              "
-            >
-              <Scissors
-                className="
-                w-8
-                h-8
-                text-[#C9A227]
-                "
-              />
-            </div>
+            <div className="mb-5 flex justify-center">
+  <img
+    src={logo}
+    alt="Trendora Boutique"
+    className="
+      w-24
+      h-24
+      rounded-3xl
+      object-cover
+      shadow-xl
+    "
+  />
+</div>
 
             <h2
               className="

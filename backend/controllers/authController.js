@@ -4,7 +4,8 @@ import Customer from '../models/Customer.js';
 import Worker from '../models/Worker.js';
 import generateToken from '../utils/generateToken.js';
 import asyncHandler from '../utils/asyncHandler.js';
-import { sendEmail } from '../services/emailService.js';
+import { sendEmail, welcomeEmail, forgotPasswordEmail,passwordChangedEmail, } from '../services/emailService.js';
+
 
 // @desc    Register user
 // @route   POST /api/auth/register
@@ -70,7 +71,14 @@ export const register = asyncHandler(async (req, res) => {
   });
   
   }
-  
+  try {
+  await sendEmail({
+    to: user.email,
+    ...welcomeEmail(user),
+  });
+} catch (err) {
+  console.error("Welcome email failed:", err.message);
+}
   res.status(201).json({
   
   _id:user._id,
@@ -139,11 +147,10 @@ export const forgotPassword = asyncHandler(async (req, res) => {
   await user.save({ validateBeforeSave: false });
 
   const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
-  await sendEmail({
-    to: user.email,
-    subject: 'Password Reset - Boutique',
-    html: `<p>Reset your password:</p><a href="${resetUrl}">${resetUrl}</a><p>Expires in 1 hour.</p>`,
-  });
+ await sendEmail({
+  to: user.email,
+  ...forgotPasswordEmail(user, resetUrl),
+});
 
   res.json({ message: 'If that email exists, a reset link was sent.', resetToken: process.env.NODE_ENV === 'development' ? resetToken : undefined });
 });
@@ -165,7 +172,14 @@ export const resetPassword = asyncHandler(async (req, res) => {
   user.password = req.body.password;
   user.resetPasswordToken = undefined;
   user.resetPasswordExpire = undefined;
-  await user.save();
+  try {
+  await sendEmail({
+    to: user.email,
+    ...passwordChangedEmail(user),
+  });
+} catch (err) {
+  console.error("Password changed email failed:", err.message);
+}
 
   res.json({
     message: 'Password updated successfully',

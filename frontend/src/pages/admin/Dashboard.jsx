@@ -331,9 +331,9 @@ const [activeFilter, setActiveFilter] = useState('all');
           {/* Pie charts */}
           <section>
             <div className="flex items-center justify-between mb-4">
-  <h2 className="text-xl font-semibold text-[#5C4033]">
-    Order Distribution
-  </h2>
+   <h2 className="text-xl font-semibold text-[#5C4033] dark:text-white">
+Order Distribution
+</h2>
 
   <span className="text-sm text-[#8B7D6B]">
     Live Status Breakdown

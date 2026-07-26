@@ -21,6 +21,7 @@ export const createNotification = async ({
 
   if (emailData) {
     try {
+     
       await sendEmail(emailData);
       notification.emailSent = true;
       await notification.save();

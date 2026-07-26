@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, clearError } from '../../redux/slices/authSlice';
 import { Scissors } from 'lucide-react';
+import logo from "../../assets/tb_logo.png";
 import { Alert, CircularProgress } from '@mui/material';
-
+import { Eye, EyeOff } from "lucide-react";
 export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -49,28 +51,31 @@ export default function Login() {
         "
       >
         <div className="max-w-lg">
-          <div
-            className="
-            w-20
-            h-20
-            rounded-3xl
-            bg-[#F3EFD9]
-            dark:bg-[#2F2A1D]
-            flex
-            items-center
-            justify-center
-            mb-8
-            "
-          >
-            <Scissors
-              className="w-10 h-10 text-[#C9A227]"
-            />
-          </div>
+<div className="px-6 py-7 border-b border-[#EAE3D6] dark:border-[#2E2E2E]">
+  <div className="flex items-center gap-4">
+    <img
+      src={logo}
+      alt="Trendora Boutique"
+      className="
+        w-16
+        h-16
+        rounded-2xl
+        object-cover
+        shadow-lg
+      "
+    />
 
-          <p className="text-sm text-[#8B7D6B] uppercase tracking-[0.25em]">
-            Boutique Management
-          </p>
+    <div>
+      <h1 className="text-2xl font-bold text-[#4A3F35] dark:text-white">
+        Trendora
+      </h1>
 
+      <p className="text-sm text-[#8B7D6B] dark:text-gray-400">
+        Boutique
+      </p>
+    </div>
+  </div>
+</div>
           <h1
             className="
             text-4xl
@@ -146,27 +151,19 @@ export default function Login() {
           "
         >
           <div className="text-center mb-8">
-            <div
-              className="
-              w-16
-              h-16
-              mx-auto
-              rounded-2xl
-              bg-[#F3EFD9]
-              dark:bg-[#2F2A1D]
-              flex
-              items-center
-              justify-center
-              mb-4
-              "
-            >
-              <Scissors
-                className="
-                w-8 h-8
-                text-[#C9A227]
-                "
-              />
-            </div>
+          <div className="mb-5 flex justify-center">
+  <img
+    src={logo}
+    alt="Trendora Boutique"
+    className="
+      w-24
+      h-24
+      rounded-3xl
+      object-cover
+      shadow-xl
+    "
+  />
+</div>
 
             <h2
               className="
@@ -241,50 +238,73 @@ export default function Login() {
               />
             </div>
 
-            <div>
-              <label
-                className="
-                block
-                mb-2
-                text-sm
-                font-medium
-                text-[#4A3F35]
-                dark:text-white
-                "
-              >
-                Password
-              </label>
+           <div>
+  <label
+    className="
+      block
+      mb-2
+      text-sm
+      font-medium
+      text-[#4A3F35]
+      dark:text-white
+    "
+  >
+    Password
+  </label>
 
-              <input
-                type="password"
-                required
-                value={form.password}
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    password:
-                      e.target.value,
-                  })
-                }
-                className="
-                w-full
-                h-12
-                px-4
-                rounded-2xl
-                border
-                border-[#EAE3D6]
-                dark:border-[#333]
-                bg-white
-                dark:bg-[#1F1F1F]
-                text-[#4A3F35]
-                dark:text-white
-                focus:outline-none
-                focus:ring-2
-                focus:ring-[#C48A7A]
-                "
-                placeholder="Enter your password"
-              />
-            </div>
+  <div className="relative">
+    <input
+      type={showPassword ? "text" : "password"}
+      required
+      value={form.password}
+      onChange={(e) =>
+        setForm({
+          ...form,
+          password: e.target.value,
+        })
+      }
+      className="
+        w-full
+        h-12
+        px-4
+        pr-12
+        rounded-2xl
+        border
+        border-[#EAE3D6]
+        dark:border-[#333]
+        bg-white
+        dark:bg-[#1F1F1F]
+        text-[#4A3F35]
+        dark:text-white
+        focus:outline-none
+        focus:ring-2
+        focus:ring-[#C48A7A]
+      "
+      placeholder="Enter your password"
+    />
+
+    <button
+      type="button"
+      onClick={() => setShowPassword(!showPassword)}
+      className="
+        absolute
+        right-4
+        top-1/2
+        -translate-y-1/2
+        text-[#8B7D6B]
+        dark:text-gray-400
+        hover:text-[#C48A7A]
+        transition-colors
+      "
+    >
+      {showPassword ? (
+        <EyeOff size={20} />
+      ) : (
+        <Eye size={20} />
+      )}
+    </button>
+  </div>
+</div>
 
             <div className="flex justify-end">
               <Link
