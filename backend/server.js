@@ -32,21 +32,10 @@ connectDB();
 
 const app = express();
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  process.env.CLIENT_URL,
-];
-console.log("CLIENT_URL:", process.env.CLIENT_URL);
-console.log("Allowed Origins:", allowedOrigins);
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://boutique-management-system-sable.vercel.app",
-    ],
-    credentials: true,
-  })
-);
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    credentials:true
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
