@@ -36,27 +36,14 @@ const allowedOrigins = [
   "http://localhost:5173",
   process.env.CLIENT_URL,
 ];
-
+console.log("CLIENT_URL:", process.env.CLIENT_URL);
 console.log("Allowed Origins:", allowedOrigins);
 app.use(
   cors({
-    origin(origin, callback) {
-      // Allow requests without an Origin header (Postman, mobile apps, etc.)
-      if (!origin) {
-        return callback(null, true);
-      }
-
-      const allowed =
-        origin === "http://localhost:5173" ||
-        /\.vercel\.app$/.test(new URL(origin).hostname);
-
-      if (allowed) {
-        return callback(null, true);
-      }
-
-      console.log("Blocked Origin:", origin);
-      callback(new Error("Not allowed by CORS"));
-    },
+    origin: [
+      "http://localhost:5173",
+      "https://boutique-management-system-sable.vercel.app",
+    ],
     credentials: true,
   })
 );
@@ -67,10 +54,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get('/api/health', (_, res) => res.json({ status: 'ok', message: 'Boutique API running' }));
-app.use((req, res, next) => {
-  console.log(req.method, req.originalUrl);
-  next();
-});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/customers', customerRoutes);
