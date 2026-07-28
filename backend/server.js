@@ -36,20 +36,14 @@ const allowedOrigins = [
   "http://localhost:5173",
   process.env.CLIENT_URL,
 ];
-
+console.log("CLIENT_URL:", process.env.CLIENT_URL);
+console.log("Allowed Origins:", allowedOrigins);
 app.use(
   cors({
-    origin(origin, callback) {
-      // Allow requests with no origin (e.g. Postman)
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-
-      console.log("Blocked Origin:", origin);
-      callback(new Error("Not allowed by CORS"));
-    },
+    origin: [
+      "http://localhost:5173",
+      "https://boutique-management-system-sable.vercel.app",
+    ],
     credentials: true,
   })
 );
